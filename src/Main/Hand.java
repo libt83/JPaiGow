@@ -44,9 +44,9 @@ public class Hand
      */
     private void countSuits(final String[] theHand)
     {
-        for (int i = 0; i < myHand.length; i++)
+        for (String str : theHand)
         {
-            switch (myHand[i].charAt(1))
+            switch (str.charAt(1))
             {
                 case 'h':
                     this.heartCount += 1;
