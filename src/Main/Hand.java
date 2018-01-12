@@ -1,3 +1,5 @@
+package Main;
+
 /**
  * Array-based representation of the 7-card PaiGow hand.
  * The cards are stored within the array as 2-character
