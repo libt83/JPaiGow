@@ -29,22 +29,32 @@ public class Hand
     public Hand(final String[] theHand)
     {
         this.myHand = theHand;
-        this.heartCount = 0;
-        this.spadeCount = 0;
-        this.diamondCount = 0;
-        this.clubCount = 0;
-        countSuits(this.myHand);
+        this.jokerInHand = this.containsJoker();
+        this.countSuits();
+    }
+
+    /**
+     * Evaluates the hand for the presence of a Joker.
+     *
+     * @return true if present; false otherwise
+     */
+    private boolean containsJoker()
+    {
+        for(String str : this.myHand)
+        {
+            if(str.equals("??"))
+                return true;
+        }
+        return false;
     }
 
     /**
      * Evaluates the hand's suits and increments their
      * associated suit counter
-     *
-     * @param theHand - the hand
      */
-    private void countSuits(final String[] theHand)
+    private void countSuits()
     {
-        for (String str : theHand)
+        for (String str : this.myHand)
         {
             switch (str.charAt(1))
             {
@@ -64,5 +74,55 @@ public class Hand
                     break;
             }
         }
+    }
+
+    /**
+     * Checks to see if the hand has a Joker.
+     *
+     * @return true if joker is in hand; false otherwise
+     */
+    public boolean hasJoker()
+    {
+        return this.jokerInHand;
+    }
+
+    /**
+     * Gets the total number of cards with a heart suit in the hand.
+     *
+     * @return the total number of hearts in hand
+     */
+    public int getHeartTotal()
+    {
+        return this.heartCount;
+    }
+
+    /**
+     * Gets the total number of cards with a spade suit in the hand.
+     *
+     * @return the total number of spades in hand
+     */
+    public int getSpadeTotal()
+    {
+        return this.spadeCount;
+    }
+
+    /**
+     * Gets the total number of cards with a diamond suit in the hand.
+     *
+     * @return the total number of diamonds in hand
+     */
+    public int getDiamondTotal()
+    {
+        return this.diamondCount;
+    }
+
+    /**
+     * Gets the total number of cards with a club suit in the hand.
+     *
+     * @return the total number of clubs in hand
+     */
+    public int getClubTotal()
+    {
+        return this.clubCount;
     }
 }
