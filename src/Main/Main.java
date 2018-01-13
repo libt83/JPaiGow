@@ -4,6 +4,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-
+        Card card = new Card("Ace", Suit.HEART);
+        System.out.println(card.getSuit());
     }
 }
