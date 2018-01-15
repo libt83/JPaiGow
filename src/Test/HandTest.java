@@ -1,9 +1,13 @@
 package Test;
 
+import Main.Card;
 import Main.Hand;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import static Main.Rank.*;
+import static Main.Suit.*;
 import static org.junit.Assert.*;
 
 public class HandTest
@@ -13,13 +17,33 @@ public class HandTest
     @Before
     public void setUp()
     {
-        String[] cards1 = {"3s", "2s", "Kh", "Ah", "6d", "7d", "2c"};
-        String[] cards2 = {"3h", "??", "Kh", "Ah", "6h", "7h", "2h"};
-        String[] cards3 = {"3s", "2s", "Ks", "As", "6s", "7s", "Ts"};
+        Card card1 = new Card("Ace", SPADE, ACE);
+        Card card2 = new Card("Deuce", HEART, DEUCE);
+        Card card3 = new Card("Four", HEART, FOUR);
+        Card card4 = new Card("Eight", DIAMOND, EIGHT);
+        Card card5 = new Card("King", CLUB, KING);
+        Card card6 = new Card("Jack", CLUB, JACK);
+        Card card7 = new Card("Queen", CLUB, QUEEN);
+        Card joker = new Card("Joker", AMBIGUOUS, JOKER);
 
-        testHand1 = new Hand(cards1);
-        testHand2 = new Hand(cards2);
-        testHand3 = new Hand(cards3);
+        Card[] hand1 = {card1, card2, card3, card4, card5, card6, card7};
+        testHand1 = new Hand(hand1);
+
+        card1.setSuit(HEART);
+        card4.setSuit(HEART);
+        card5.setSuit(HEART);
+        card6.setSuit(HEART);
+        Card[] hand2 = {card1, card2, card3, card4, card5, card6, joker};
+        testHand2 = new Hand(hand2);
+
+        card1.setSuit(CLUB);
+        card2.setSuit(CLUB);
+        card3.setSuit(CLUB);
+        card4.setSuit(CLUB);
+        card5.setSuit(CLUB);
+        card6.setSuit(CLUB);
+        Card[] hand3 = {card1, card2, card3, card4, card5, card6, card7};
+        testHand3 = new Hand(hand3);
     }
 
     // test to determine if the number of hearts in hand is accurate
