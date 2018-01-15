@@ -20,5 +20,5 @@ class Card
     {
         return this.suit.getCardName();
     }
-    
+
 }
