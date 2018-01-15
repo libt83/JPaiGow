@@ -6,14 +6,19 @@ class Card
 
     private Suit suit;
 
-    Card(final String name, final Suit suit)
+    private Rank rank;
+
+    Card(final String name, Suit suit, Rank rank)
     {
         this.name = name;
-        this.suit = suit;
+        if(!name.equals("Joker"))
+            this.suit = suit;
+        this.rank = rank;
     }
 
     public String getSuit()
     {
-        return this.suit.getName();
+        return this.suit.getCardName();
     }
+    
 }

@@ -4,15 +4,15 @@ public enum Suit
 {
     HEART("Hearts"), SPADE("Spades"), DIAMOND("Diamonds"), CLUB("Clubs");
 
-    private String name;
+    private String cardName;
 
-    Suit(final String name)
+    Suit(final String cardName)
     {
-        this.name = name;
+        this.cardName = cardName;
     }
 
-    public String getName()
+    public String getCardName()
     {
-        return this.name;
+        return this.cardName;
     }
 }
