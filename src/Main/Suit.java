@@ -2,17 +2,22 @@ package Main;
 
 public enum Suit
 {
-    HEART("Hearts"), SPADE("Spades"), DIAMOND("Diamonds"), CLUB("Clubs");
+    HEART("Hearts"), SPADE("Spades"), DIAMOND("Diamonds"), CLUB("Clubs"), AMBIGUOUS("?");
 
-    private String cardName;
+    private String suitName;
 
-    Suit(final String cardName)
+    Suit(final String suitName)
     {
-        this.cardName = cardName;
+        this.suitName = suitName;
     }
 
-    public String getCardName()
+    public String getSuitName()
     {
-        return this.cardName;
+        return this.suitName;
     }
+
+//    public void setSuit(final String newSuit)
+//    {
+//        this.suitName = newSuit;
+//    }
 }

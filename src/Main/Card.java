@@ -1,6 +1,6 @@
 package Main;
 
-class Card
+public class Card
 {
     private String name;
 
@@ -8,17 +8,31 @@ class Card
 
     private Rank rank;
 
-    Card(final String name, Suit suit, Rank rank)
+    public Card(final String name, Suit suit, Rank rank)
     {
         this.name = name;
-        if(!name.equals("Joker"))
-            this.suit = suit;
+        this.suit = suit;
         this.rank = rank;
     }
 
     public String getSuit()
     {
-        return this.suit.getCardName();
+        return this.suit.getSuitName();
+    }
+
+    public int getRank()
+    {
+        return this.rank.getCardRank();
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public void setSuit(final Suit newSuit)
+    {
+        this.suit = newSuit;
     }
 
 }
