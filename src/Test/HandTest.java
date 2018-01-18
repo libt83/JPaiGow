@@ -72,4 +72,42 @@ public class HandTest
         assertFalse(hasJoker3);
     }
 
+    // test to determine if the hand has a flush
+    @Test
+    public void testHasFlush()
+    {
+        Card card1 = new Card("Ace", SPADE, ACE);
+        Card card2 = new Card("Deuce", HEART, DEUCE);
+        Card card3 = new Card("Four", HEART, FOUR);
+        Card card4 = new Card("Eight", DIAMOND, EIGHT);
+        Card card5 = new Card("King", CLUB, KING);
+        Card card6 = new Card("Jack", CLUB, JACK);
+        Card card7 = new Card("Queen", CLUB, QUEEN);
+        Card joker = new Card("Joker", AMBIGUOUS, JOKER);
+
+        Card[] hand1 = {card1, card2, card3, card4, card5, card6, card7};
+        testHand1 = new Hand(hand1);
+
+        // test when no flush present
+        boolean result1 = testHand1.hasFlush();
+        assertFalse(result1);
+
+        card1.setSuit(HEART);
+        card4.setSuit(HEART);
+        Card[] hand2 = {card1, card2, card3, card4, card5, card6, joker};
+        testHand2 = new Hand(hand2);
+
+        // test with 4 same suits plus the joker
+        boolean result2 = testHand2.hasFlush();
+        assertTrue(result2);
+
+        card5.setSuit(HEART);
+        Card[] hand3 = {card1, card2, card3, card4, card5, card6, card7};
+        testHand3 = new Hand(hand3);
+
+        // test with 5 cards of the same suit
+        boolean result3 = testHand3.hasFlush();
+        assertTrue(result3);
+    }
+
 }
