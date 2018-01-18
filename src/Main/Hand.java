@@ -10,11 +10,10 @@ package Main;
 public class Hand
 {
     // the PaiGow hand
-    private String[] myHand;
+    private Card[] myHand;
 
-    // the suit counters
-    private int heartCount, spadeCount,
-            diamondCount, clubCount;
+    // array that contains suit counts (0=hearts, 1=spades, 2=diamonds, and 3=clubs)
+    private int[] suitFreqArr;
 
     // indicates the presence of a Joker in the hand
     private boolean jokerInHand;
@@ -26,9 +25,10 @@ public class Hand
      * @param theHand - the hand
      *
      */
-    public Hand(final String[] theHand)
+    public Hand(final Card[] theHand)
     {
         this.myHand = theHand;
+        this.suitFreqArr = new int[4];
         this.jokerInHand = this.containsJoker();
         this.countSuits();
     }
@@ -40,9 +40,9 @@ public class Hand
      */
     private boolean containsJoker()
     {
-        for(String str : this.myHand)
+        for(Card card : this.myHand)
         {
-            if(str.equals("??"))
+            if(card.getName().toLowerCase().equals("joker"))
                 return true;
         }
         return false;
@@ -54,26 +54,52 @@ public class Hand
      */
     private void countSuits()
     {
-        for (String str : this.myHand)
+        for (Card card : this.myHand)
         {
-            switch (str.charAt(1))
+            switch (card.getSuit().charAt(0))
             {
-                case 'h':
-                    this.heartCount += 1;
+                case 'H':
+                    this.suitFreqArr[0] += 1;
                     break;
-                case 's':
-                    this.spadeCount += 1;
+                case 'S':
+                    this.suitFreqArr[1] += 1;
                     break;
-                case 'd':
-                    this.diamondCount += 1;
+                case 'D':
+                    this.suitFreqArr[2] += 1;
                     break;
-                case 'c':
-                    this.clubCount += 1;
+                case 'C':
+                    this.suitFreqArr[3] += 1;
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    /**
+     * Determines if the hand contains a flush.
+     *
+     * @return true if flush is present in hand
+     */
+    public boolean hasFlush()
+    {
+        for(int suitTotal : this.suitFreqArr)
+        {
+            if(suitTotal >= 4)
+            {
+                if(suitTotal == 4 && this.jokerInHand)
+                {
+                    return true;
+                }
+
+                if(suitTotal > 4)
+                {
+                    return true;
+                }
+            }
+
+        }
+        return false;
     }
 
     /**
@@ -93,7 +119,7 @@ public class Hand
      */
     public int getHeartTotal()
     {
-        return this.heartCount;
+        return this.suitFreqArr[0];
     }
 
     /**
@@ -103,7 +129,7 @@ public class Hand
      */
     public int getSpadeTotal()
     {
-        return this.spadeCount;
+        return this.suitFreqArr[1];
     }
 
     /**
@@ -113,7 +139,7 @@ public class Hand
      */
     public int getDiamondTotal()
     {
-        return this.diamondCount;
+        return this.suitFreqArr[2];
     }
 
     /**
@@ -123,6 +149,6 @@ public class Hand
      */
     public int getClubTotal()
     {
-        return this.clubCount;
+        return this.suitFreqArr[3];
     }
 }
